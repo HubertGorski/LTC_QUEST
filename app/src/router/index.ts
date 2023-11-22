@@ -5,6 +5,7 @@ import TaskDetailsView from "@/views/TaskDetailsView.vue";
 import UserOptionsView from "@/views/UserOptionsView.vue";
 import BingoView from "@/views/BingoView.vue";
 import RankingView from "@/views/RankingView.vue";
+import SignInView from "@/views/SignInView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +19,11 @@ const router = createRouter({
       path: "/useroptions",
       name: "useroptions",
       component: UserOptionsView,
+    },
+    {
+      path: "/signin",
+      name: "signin",
+      component: SignInView,
     },
     {
       path: "/bingo",

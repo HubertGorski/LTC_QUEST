@@ -30,10 +30,10 @@ fetch("http://localhost:5000/getAllTasks")
         <div class="top-panel__tab-name">{{ locationTitle }}</div>
       </Transition>
       <RouterLink
-        @click="locationTitle = LOCATION.USER_PANEL"
+        @click="locationTitle = LOCATION.SIGNIN_PANEL"
         class="top-panel__user-icon"
         :to="{
-          name: 'useroptions',
+          name: 'signin',
         }"
         ><p>Uczestnik</p>
         <UserIcon class="icon" />

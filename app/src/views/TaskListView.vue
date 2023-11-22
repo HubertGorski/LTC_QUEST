@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import TaskManager from "@/components/taskManager.vue";
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
 
@@ -11,7 +12,9 @@ watch(activeTeamId, (val, old) => {
 </script>
 
 <template>
-  <div class="task-list-view">tak</div>
+  <div class="taskListView">
+    <TaskManager/>
+  </div>
 </template>
 
 <style lang="scss" scoped>

@@ -1,5 +1,6 @@
 export enum LOCATION {
   USER_PANEL = "Panel użytkownika",
+  SIGNIN_PANEL = "Logowanie",
   MAIN_PAGE = "Strona Główna",
   TASKS_LIST = "Lista zadań",
   RANKING = "Ranking drużyn",
@@ -12,4 +13,5 @@ export const pages = [
   LOCATION.TASKS_LIST,
   LOCATION.RANKING,
   LOCATION.BINGO,
+  LOCATION.SIGNIN_PANEL,
 ];
