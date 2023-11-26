@@ -1,9 +1,16 @@
 <script setup lang="ts">
+import { TEAMS } from "@/components/teams/model/enumTeams";
 import TaskManager from "@/components/taskManager.vue";
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import TaskElement from "@/components/TaskElement.vue";
+import { Task } from "@/components/tasks/model/Task";
+import { User } from "@/components/users/model/User";
 
 const route = useRoute();
+const isTeamView: boolean =
+  route.params.team === TEAMS.ALL_TEAMS ? false : true;
+
 const transitionName = ref("slide-right");
 const activeTeamId = ref<number>(0);
 watch(activeTeamId, (val, old) => {
@@ -13,11 +20,19 @@ watch(activeTeamId, (val, old) => {
 
 <template>
   <div class="taskListView">
-    <TaskManager/>
+    <TaskManager :isTeamView="isTeamView" />
+    <TaskElement />
   </div>
 </template>
 
 <style lang="scss" scoped>
+.taskListView {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
 .slide-right-enter-from,
 .slide-left-leave-to {
   opacity: 0;

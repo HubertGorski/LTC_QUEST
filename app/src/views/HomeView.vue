@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import DarkModeBtn from "@/components/buttons/DarkModeBtn.vue";
 import { useDark, useToggle } from "@vueuse/core";
+import PositionBtn from "@/components/buttons/PositionBtn.vue";
+import {
+  darkModeStates,
+  darkModeIcons,
+} from "@/components/buttons/model/DarkModeStates";
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
@@ -9,7 +13,13 @@ const toggleDark = useToggle(isDark);
 <template>
   <main>
     <div class="btn">
-      <DarkModeBtn class="icon" @click="toggleDark()" />
+      <PositionBtn
+        :state="isDark"
+        :nameStates="darkModeStates"
+        :icons="darkModeIcons"
+        @changeState="toggleDark"
+        class="icon"
+      />
       <p v-if="isDark">Ciemny</p>
       <p v-else>Jasny</p>
     </div>

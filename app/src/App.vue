@@ -9,13 +9,16 @@ import TrophyIcon from "@/assets/icons/TrophyIcon.vue";
 import UserIcon from "@/assets/icons/UserIcon.vue";
 import BingoIcon from "@/assets/icons/BingoIcon.vue";
 import { LOCATION } from "./components/pages/enumLocationTitles";
+import { TEAMS, teams } from "./components/teams/model/enumTeams";
+import { useRoute } from "vue-router";
 
+const route = useRoute();
 const locationTitle = ref<string>(LOCATION.MAIN_PAGE);
 
-const teams = ref<TeamEasy[]>([]);
-fetch("http://localhost:5000/getAllTeams")
-  .then((response) => response.json())
-  .then((data) => (teams.value = data.data));
+// const teams = ref<TeamEasy[]>([]);
+// fetch("http://localhost:5000/getAllTeams")
+//   .then((response) => response.json())
+//   .then((data) => (teams.value = data.data));
 
 const tasks = ref<Task[]>([]);
 fetch("http://localhost:5000/getAllTasks")
@@ -27,7 +30,10 @@ fetch("http://localhost:5000/getAllTasks")
   <div class="app">
     <div class="top-panel">
       <Transition name="main-panel">
-        <div class="top-panel__tab-name">{{ locationTitle }}</div>
+        <div class="top-panel__tab-name">
+          <span>{{ locationTitle }}</span>
+          <span v-if="route.params.team">: {{ route.params.team }} </span>
+        </div>
       </Transition>
       <RouterLink
         @click="locationTitle = LOCATION.SIGNIN_PANEL"
@@ -63,12 +69,24 @@ fetch("http://localhost:5000/getAllTasks")
             @click="locationTitle = LOCATION.TASKS_LIST"
             :to="{
               name: 'tasklist',
-              params: { team: 'Kiryny' },
+              params: { team: TEAMS.TEAM_1 },
             }"
             ><TasksIcon class="icon" />
-            <p>Zadania</p></RouterLink
+            <p>Zadania Teamu</p></RouterLink
           >
         </li>
+        <li>
+          <RouterLink
+            @click="locationTitle = LOCATION.TASKS_LIST"
+            :to="{
+              name: 'tasklist',
+              params: { team: TEAMS.ALL_TEAMS },
+            }"
+            ><TasksIcon class="icon" />
+            <p>Wszystkie zadania</p></RouterLink
+          >
+        </li>
+
         <li>
           <RouterLink
             @click="locationTitle = LOCATION.RANKING"
@@ -89,19 +107,6 @@ fetch("http://localhost:5000/getAllTasks")
             <p>Bingo</p></RouterLink
           >
         </li>
-        <!-- <li>
-            <DarkModeBtn class="icon" @click="toggleDark()" />
-            <p v-if="isDark">Ciemny</p>
-            <p v-else>Jasny</p>
-          </li> -->
-        <!-- <li v-for="team in teams" :key="team.id">
-          <RouterLink
-            :to="{
-              name: 'tasklist',
-              params: { team: team.name },
-            }"
-          ></RouterLink>
-        </li> -->
       </ul>
     </nav>
   </div>
