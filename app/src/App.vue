@@ -20,10 +20,10 @@ const locationTitle = ref<string>(LOCATION.MAIN_PAGE);
 //   .then((response) => response.json())
 //   .then((data) => (teams.value = data.data));
 
-const tasks = ref<Task[]>([]);
-fetch("http://localhost:5000/getAllTasks")
-  .then((response) => response.json())
-  .then((data) => (tasks.value = data.data));
+// const tasks = ref<Task[]>([]);
+// fetch("http://localhost:5000/getAllTasks")
+//   .then((response) => response.json())
+//   .then((data) => (tasks.value = data.data));
 </script>
 
 <template>

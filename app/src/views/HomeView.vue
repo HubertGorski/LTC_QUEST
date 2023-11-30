@@ -14,7 +14,7 @@ const toggleDark = useToggle(isDark);
   <main>
     <div class="btn">
       <PositionBtn
-        :state="isDark"
+        :state="Number(isDark)"
         :nameStates="darkModeStates"
         :icons="darkModeIcons"
         @changeState="toggleDark"
